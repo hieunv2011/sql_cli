@@ -1,0 +1,43 @@
+'use strict';
+
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('Prizes', {
+      prize_id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      prize_name: {
+        type: Sequelize.STRING(40),
+        allowNull: false
+      },
+      prize_duration: {
+        type: Sequelize.STRING(20),
+        allowNull: true
+      },
+      created_at: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
+      },
+      updated_at: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
+      },
+      created_by: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      updated_by: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      }
+    });
+  },
+
+  async down(queryInterface, Sequelize) {
+    await queryInterface.dropTable('Prizes');
+  }
+};
